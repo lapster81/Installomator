@@ -5737,19 +5737,6 @@ malwarebytes)
     appNewVersion=$(curl -Ifs https://downloads.malwarebytes.com/file/mb3-mac | grep "location" | sed -E 's/.*-Mac-([0-9\.]*)\.pkg/\1/g')
     expectedTeamID="GVZRY6KDKR"
     ;;
-marathonkase)
-      name="Marathon Kalin Setterberg Data AB"
-      type="pkg"
-      downloadURL_aarch64="https://update.kase.se/marathon/macos-aarch64/Marathon-$(curl -s https://update.kase.se/marathon/macos-aarch64/versions.txt | tail -n 1)_aarch64.pkg"
-      downloadURL_x64="https://update.kase.se/marathon/macos-x64/Marathon-$(curl -s https://update.kase.se/marathon/macos-x64/versions.txt | tail -n 1)_x64.pkg"
-      if [[ $(arch) == "arm64" ]]; then
-        downloadURL=$downloadURL_aarch64
-      else
-        downloadURL=$downloadURL_x64
-      fi
-      appNewVersion=$(curl -s https://update.kase.se/marathon/macos-aarch64/versions.txt | tail -n 1) # Fetch the latest version
-      expectedTeamID="WUUW5HSQMZ"
-      ;;
 marathon)
     name="Classic Marathon"
     type="dmg"
@@ -5776,6 +5763,21 @@ marathoninfinity)
     downloadURL="$(downloadURLFromGit Aleph-One-Marathon alephone)"
     appNewVersion="$(versionFromGit Aleph-One-Marathon alephone)"
     expectedTeamID="E8K89CXZE7"
+    ;;
+
+marathonkase)
+    name="Marathon Kalin Setterberg Data AB"
+    type="pkg"
+    versionKey="CFBundleVersion"
+    downloadURL_aarch64="https://update.kase.se/marathon/macos-aarch64/Marathon-$(curl -s https://update.kase.se/marathon/macos-aarch64/versions.txt | tail -n 1)_aarch64.pkg"
+    downloadURL_x64="https://update.kase.se/marathon/macos-x64/Marathon-$(curl -s https://update.kase.se/marathon/macos-x64/versions.txt | tail -n 1)_x64.pkg"
+    if [[ $(arch) == "arm64" ]]; then
+      downloadURL=$downloadURL_aarch64
+    else
+      downloadURL=$downloadURL_x64
+    fi
+    appNewVersion=$(curl -s https://update.kase.se/marathon/macos-aarch64/versions.txt | tail -n 1) # Fetch the latest version
+    expectedTeamID="WUUW5HSQMZ"
     ;;
 masv)
     name="MASV"
