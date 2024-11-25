@@ -1,5 +1,5 @@
 marathonkase)
-    name="Marathon Kalin Setterberg AB"
+    name="Marathon Kalin Setterberg"
     type="pkg"
     case $(arch) in
         "arm64")
